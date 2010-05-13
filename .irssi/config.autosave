@@ -1,0 +1,73 @@
+servers = (
+  {
+    address = "irc.freenode.net";
+    chatnet = "Freenode";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = {
+  Freenode = {
+    type = "IRC";
+    nick = "Osmosis";
+    autosendcmd = "/msg nickserv identify ;wait 2000";
+  };
+};
+
+aliases = {
+  J = "join";
+  LEAVE = "part";
+  E = "exec";
+  EO = "exec -o";
+  EXIT = "quit";
+  LL = "lastlog";
+  W = "window";
+  M = "mark";
+  WC = "window close";
+  WN = "window new hide";
+  RUN = "SCRIPT LOAD";
+  Q = "QUERY";
+};
+
+settings = {
+  core = {
+    real_name = "[root@yourbox]#";
+    user_name = "Osmosis";
+    nick = "Osmosis";
+    timestamp_format = "%H:%M";
+  };
+
+  ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
+
+  hilights = (
+    { text = "Osmosis"; nick = "no"; word = "no"; fullword = "yes"; },
+    { text = ""; nick = "no"; word = "no"; fullword = "yes"; }
+  );
+
+  logs = { };
+  "fe-text" = { actlist_sort = "refnum"; };
+  "fe-common/core" = { theme = "fear2"; };
+  "perl/core/scripts" = {
+    crapbuster_levels = "JOINS PARTS QUITS NICKS CLIENTCRAP CRAP MODE TOPICS KICK";
+  };
+};
+statusbar = {
+  default = {
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+};
+ignores = (
+  {
+    level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+    channels = ( "#linuxmint-help" );
+  }
+);

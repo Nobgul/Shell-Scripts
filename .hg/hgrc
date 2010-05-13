@@ -1,0 +1,7 @@
+[paths]
+default = https://shellcode@bitbucket.org/shellcode/shell-hosting-scripts
+
+[ui]
+username = Osmosis <chris@shellco.de>
+verbose = True
+
