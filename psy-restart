@@ -1,0 +1,4 @@
+#!/bin/sh
+psy-kill && echo "Restarting your psybnc."
+check-psy
+

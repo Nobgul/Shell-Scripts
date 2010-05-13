@@ -1,0 +1,581 @@
+## Sample initialization file for GNU nano.
+##
+## Please note that you must have configured nano with --enable-nanorc
+## for this file to be read!  Also note that this file should not be in
+## DOS or Mac format, and that characters specially interpreted by the
+## shell should not be escaped here.
+##
+## To make sure a value is disabled, use "unset <option>".
+##
+## For the options that take parameters, the default value is given.
+## Other options are unset by default.
+##
+## Quotes inside string parameters don't have to be escaped with
+## backslashes.  The last double quote in the string will be treated as
+## its end.  For example, for the "brackets" option, ""')>]}" will match
+## ", ', ), >, ], and }.
+
+## Use auto-indentation.
+# set autoindent
+
+## Backup files to filename~.
+# set backup
+
+## The directory to put unique backup files in.
+# set backupdir ""
+
+## Do backwards searches by default.
+# set backwards
+
+## Use bold text instead of reverse video text.
+# set boldtext
+
+## The characters treated as closing brackets when justifying
+## paragraphs.  They cannot contain blank characters.  Only closing
+## punctuation, optionally followed by closing brackets, can end
+## sentences.
+##
+# set brackets ""')>]}"
+
+## Do case sensitive searches by default.
+# set casesensitive
+
+## Constantly display the cursor position in the statusbar.  Note that
+## this overrides "quickblank".
+# set const
+
+## Use cut to end of line by default.
+# set cut
+
+## Set the line length for wrapping text and justifying paragraphs.
+## If fill is 0 or less, the line length will be the screen width less
+## this number.
+##
+# set fill -8
+
+## Enable ~/.nano_history for saving and reading search/replace strings.
+# set historylog
+
+## The opening and closing brackets that can be found by bracket
+## searches.  They cannot contain blank characters.  The former set must
+## come before the latter set, and both must be in the same order.
+##
+# set matchbrackets "(<[{)>]}"
+
+## Use the blank line below the titlebar as extra editing space.
+# set morespace
+
+## Enable mouse support, if available for your system.  When enabled,
+## mouse clicks can be used to place the cursor, set the mark (with a
+## double click), and execute shortcuts.  The mouse will work in the X
+## Window System, and on the console when gpm is running.
+##
+# set mouse
+
+## Allow multiple file buffers (inserting a file will put it into a
+## separate buffer).  You must have configured with --enable-multibuffer
+## for this to work.
+##
+# set multibuffer
+
+## Don't convert files from DOS/Mac format.
+# set noconvert
+
+## Don't follow symlinks when writing files.
+# set nofollow
+
+## Don't display the helpful shortcut lists at the bottom of the screen.
+# set nohelp
+
+## Don't add newlines to the ends of files.
+# set nonewlines
+
+## Don't wrap text at all.
+# set nowrap
+
+## Set operating directory.  nano will not read or write files outside
+## this directory and its subdirectories.  Also, the current directory
+## is changed to here, so any files are inserted from this dir.  A blank
+## string means the operating directory feature is turned off.
+##
+# set operatingdir ""
+
+## Preserve the XON and XOFF keys (^Q and ^S).
+# set preserve
+
+## The characters treated as closing punctuation when justifying
+## paragraphs.  They cannot contain blank characters.  Only closing
+## punctuation, optionally followed by closing brackets, can end
+## sentences.
+##
+# set punct "!.?"
+
+## Do quick statusbar blanking.  Statusbar messages will disappear after
+## 1 keystroke instead of 26.  Note that "const" overrides this.
+##
+# set quickblank
+
+## The email-quote string, used to justify email-quoted paragraphs.
+## This is an extended regular expression if your system supports them,
+## otherwise a literal string.  Default:
+# set quotestr "^([ 	]*[#:>\|}])+"
+## if you have extended regular expression support, otherwise:
+# set quotestr "> "
+
+## Fix Backspace/Delete confusion problem.
+# set rebinddelete
+
+## Fix numeric keypad key confusion problem.
+# set rebindkeypad
+
+## Do extended regular expression searches by default.
+# set regexp
+
+## Make the Home key smarter.  When Home is pressed anywhere but at the
+## very beginning of non-whitespace characters on a line, the cursor
+## will jump to that beginning (either forwards or backwards).  If the
+## cursor is already at that position, it will jump to the true
+## beginning of the line.
+# set smarthome
+
+## Use smooth scrolling as the default.
+# set smooth
+
+## Use this spelling checker instead of the internal one.  This option
+## does not properly have a default value.
+##
+# set speller "aspell -x -c"
+
+## Allow nano to be suspended.
+# set suspend
+
+## Use this tab size instead of the default; it must be greater than 0.
+# set tabsize 8
+
+## Convert typed tabs to spaces.
+# set tabstospaces
+
+## Save automatically on exit, don't prompt.
+# set tempfile
+
+## Disallow file modification; why would you want this in an rcfile? ;)
+# set view
+
+## The two single-column characters used to display the first characters
+## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
+## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
+# set whitespace "  "
+
+## Detect word boundaries more accurately by treating punctuation
+## characters as part of a word.
+# set wordbounds
+
+
+## Color setup
+##
+## Format:
+##
+## syntax "short description" ["filename regex" ...]
+##
+## The "none" syntax is reserved; specifying it on the command line is
+## the same as not having a syntax at all.  The "default" syntax is
+## special: it takes no filename regexes, and applies to files that
+## don't match any other syntax's filename regexes.
+##
+## color foreground,background "regex" ["regex"...]
+## or
+## icolor foreground,background "regex" ["regex"...]
+##
+## "color" will do case sensitive matches, while "icolor" will do case
+## insensitive matches.
+##
+## Valid colors: white, black, red, blue, green, yellow, magenta, cyan.
+## For foreground colors, you may use the prefix "bright" to get a
+## stronger highlight.
+##
+## To use multi-line regexes, use the start="regex" end="regex"
+## [start="regex" end="regex"...] format.
+##
+## If your system supports transparency, not specifying a background
+## color will use a transparent color.  If you don't want this, be sure
+## to set the background color to black or white.
+##
+## If you wish, you may put your syntaxes in separate files.  You can
+## make use of such files (which can only include "syntax", "color", and
+## "icolor" commands) as follows:
+##
+## include "/path/to/syntax_file.nanorc"
+##
+## Unless otherwise noted, the name of the syntax file (without the
+## ".nanorc" extension) should be the same as the "short description"
+## name inside that file.  These names are kept fairly short to make
+## them easier to remember and faster to type using nano's -Y option.
+##
+## All regexes should be extended regular expressions.
+
+## Nano v2.0.7 syntax highlighting file by S.R. Santos (18 July 2008)
+## Note that syntax highlighting rules are applied in the order that they are read
+
+## For DNA sequence in FASTA format
+syntax "fasta" "\.fasta$" "\.fas$"
+color brightwhite "^\>.*"
+color brightgreen "[Aa]"
+color brightred "[Tt]"
+color brightblue "[Cc]"
+color brightyellow "[Gg]"
+
+## For DNA sequence in NEXUS/PAUP format
+syntax "nexus" "\.nexus$" "\.nex$"
+color brightgreen "[Aa]"
+color brightred "[Tt]"
+color brightblue "[Cc]"
+color brightyellow "[Gg]"
+color brightwhite "(^[ 	])\{?[0-9A-Z_!@#$*?-]+\}?"
+color brightwhite  start="\[" end="\]"
+color brightred "(#NEXUS|End|;)"
+color brightyellow "(Dimensions|Format|Matrix)"
+color brightcyan "(Begin DATA|ntax|nchar|datatype|gap)"
+color brightred "\=\{?[0-9A-Z_!@#$*?-]+\}?"
+
+## For GNU assembler
+syntax "asm" "\.(S|s|asm)$"
+color red "\<[A-Z_]{2,}\>"
+color brightgreen "\.(data|subsection|text)"
+color green "\.(align|file|globl|global|hidden|section|size|type|weak)"
+color brightyellow "\.(ascii|asciz|byte|double|float|hword|int|long|short|single|struct|word)"
+color brightred "^[[:space:]]*[.0-9A-Z_]*:"
+color brightcyan "^[[:space:]]*#[[:space:]]*(define|undef|include|ifn?def|endif|elif|else|if|warning|error)"
+# Highlight strings (note: VERY resource intensive)
+color brightyellow "<[^= 	]*>" ""(\\.|[^"])*""
+color brightyellow start=""(\\.|[^"])*\\[[:space:]]*$" end="^(\\.|[^"])*""
+# Highlight comments
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+# Highlight trailing whitespace
+color ,green "[[:space:]]+$"
+
+## For C/C++ files
+syntax "c" "\.(c(c|pp|xx)?|C)$" "\.(h(h|pp|xx)?|H)$" "\.ii?$"
+color brightred "\<[A-Z_][0-9A-Z_]+\>" 
+color green "\<(float|double|bool|char|int|short|long|sizeof|enum|void|static|const|struct|union|typedef|extern|(un)?signed|inline)\>"
+color green "\<((s?size)|((u_?)?int(8|16|32|64|ptr)))_t\>"
+color green "\<(class|namespace|template|public|protected|private|typename|this|friend|virtual|using|mutable|volatile|register|explicit)\>"
+color brightyellow "\<(for|if|while|do|else|case|default|switch)\>"
+color brightyellow "\<(try|throw|catch|operator|new|delete)\>"
+color magenta "\<(goto|continue|break|return)\>"
+color brightcyan "^[[:space:]]*#[[:space:]]*(define|include|(un|ifn?)def|endif|el(if|se)|if|warning|error)"
+color brightmagenta "'([^'\]|(\\["'abfnrtv\\]))'" "'\\(([0-3]?[0-7]{1,2}))'" "'\\x[0-9A-Fa-f]{1,2}'"
+
+## For GCC builtins
+color cyan "__attribute__[[:space:]]*\(\([^)]*\)\)" "__(aligned|asm|builtin|hidden|inline|packed|restrict|section|typeof|weak)__"
+color brightyellow "<[^= 	]*>" ""(\\.|[^"])*""
+color brightyellow start=""(\\.|[^"])*\\[[:space:]]*$" end="^(\\.|[^"])*""
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+# Highlight Trailing whitespace
+color ,green "[[:space:]]+$"
+
+## For groff files
+syntax "groff" "\.m[ems]$" "\.rof" "\.tmac$" "^tmac."
+# The argument of .ds or .nr
+color cyan "^\.(ds|nr) [^[[:space:]]]*"
+# Single character escapes
+color brightmagenta "\\."
+# Highlight the argument of \f or \s in the same color
+color brightmagenta "\\f." "\\f\(.." "\\s(\+|\-)?[0-9]"
+# Newlines
+color cyan "(\\|\\\\)n(.|\(..)"
+color cyan start="(\\|\\\\)n\[" end="]"
+# Requests
+color brightgreen "^\.[[:space:]]*[^[[:space:]]]*"
+# Comments
+color yellow "^\.\\".*$"
+# Strings
+color green "(\\|\\\\)\*(.|\(..)"
+color green start="(\\|\\\\)\*\[" end="]"
+# Characters
+color brightred "\\\(.."
+color brightred start="\\\[" end="]"
+# Macro arguments
+color brightcyan "\\\\\$[1-9]"
+
+## For HTML files
+syntax "html" "\.html$" "\.htm$"
+color brightcyan start="<" end=">"
+color red "&[^;[[:space:]]]*;"
+
+## For CSS files
+syntax "css" "\.css$"
+color brightred     "."
+color brightyellow start="\{" end="\}"
+color brightwhite start=":" end="[;^\{]"
+color brightblue ":active|:focus|:hover|:link|:visited|:link|:after|:before|$"
+color brightblue start="\/\*" end="\\*/"
+color brightmagenta ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+color brightgreen ";|:|\{|\}"
+
+## For HTML urls
+syntax "urls"
+color brightmagenta   "^.*$"
+color cyan      "^(1[0-9][0-9]|20[256]|30[45]).*$"
+color green      "^20[03].*$"
+color brightyellow   "^(201|30[0-37]).*$"
+color brightred      "^(204|[45][0-9][0-9]|666).*$"
+
+
+## For PHP files (example #1)
+syntax "php2" "\.php[2345s~]?$"
+color brightblue "(.*)\("
+color blue "\$[a-zA-Z_0-9$]*|[=!<>]"
+color green "(var|class|function|echo|case|break|default|exit|switch|if|else|elseif|@|while)\s"
+color green "[.,{}();]"
+color red "('.*')|(\".*\")"
+color brightyellow "(#.*|//.*)$"
+color brightyellow start="/\*" end="\*/"
+color brightblue "(<\?(php)?|\?>)"
+color white start="\?>" end="<\?(php)?" 
+
+## For PHP files (example #2)
+syntax "php" "\.php[2345s~]?$"
+# php markings
+color brightgreen "(<\?(php)?|\?>)"
+# functions
+color white "\<[a-z_]*\("
+# types
+color green "\<(var|float|global|double|bool|char|int|enum|const)\>"
+# structure
+color brightyellow "\<(class|new|private|public|function|for|foreach|if|while|do|else|elseif|case|default|switch)\>"
+# control flow
+color magenta "\<(goto|continue|break|return)\>"
+# strings
+color brightyellow "<[^=       ]*>" ""(\.|[^"])*""
+# comments
+color brightblue "//.*"
+color brightblue start="/\*" end="\*/"
+# Trailing whitespace
+color ,green "[[:space:]]+$"
+
+## For XML files
+syntax "ml" ".*\.([jrs]?html?|xml|sgml?|lhtml|opml|kdevelop|vcproj|glade|xsd|plist|gcs|dtd|dcl)$" "catalog$" "docbook$"
+color white "^.+$"
+color green  start="<" end=">"
+color cyan   "<[^> ]+"
+color cyan   ">"
+color yellow start="<!DOCTYPE" end="[/]?>"
+color yellow start="<!--" end="-->"
+color red    "&[^;]*;"
+
+## For TeX files
+syntax "tex" "\.tex$"
+icolor green "\\.|\\[A-Z]*"
+color magenta "[{}]"
+color blue "%.*"
+
+## For Java files
+syntax "java" "\.java$"
+color green "\<(boolean|byte|char|double|float|int|long|new|short|this|transient|void)\>"
+color red "\<(break|case|catch|continue|default|do|else|finally|for|if|return|switch|throw|try|while)\>"
+color cyan "\<(abstract|class|extends|final|implements|import|instanceof|interface|native|package|private|protected|public|static|strictfp|super|synchronized|throws|volatile)\>"
+color red ""[^"]*""
+color yellow "\<(true|false|null)\>"
+color blue "//.*"
+color blue start="/\*" end="\*/"
+color brightblue start="/\*\*" end="\*/"
+color ,green "[[:space:]]+$"
+
+## For manpages
+syntax "man" "\.[1-9]x?$"
+color green "\.(S|T)H.*$"
+color brightgreen "\.(S|T)H" "\.TP"
+color brightred "\.(BR?|I[PR]?).*$"
+color brightblue "\.(BR?|I[PR]?|PP)"
+color brightwhite "\\f[BIPR]"
+color yellow "\.(br|DS|RS|RE|PD)"
+
+## For nanorc files
+syntax "nanorc" "\.?nanorc$"
+# Possible errors and parameters
+icolor brightwhite "^[[:space:]]*((un)?set|include|syntax|i?color).*$"
+# Keywords
+icolor brightgreen "^[[:space:]]*(set|unset)[[:space:]]+(autoindent|backup|backupdir|backwards|boldtext|brackets|casesensitive|const|cut|fill|historylog|matchbrackets|morespace|mouse|multibuffer|noconvert|nofollow|nohelp|nonewlines|nowrap|operatingdir|preserve|punct)\>" "^[[:space:]]*(set|unset)[[:space:]]+(quickblank|quotestr|rebinddelete|rebindkeypad|regexp|smarthome|smooth|speller|suspend|tabsize|tabstospaces|tempfile|view|whitespace|wordbounds)\>"
+icolor green "^[[:space:]]*(set|unset|include|syntax)\>"
+# Colors
+icolor yellow "^[[:space:]]*i?color[[:space:]]*(bright)?(white|black|red|blue|green|yellow|magenta|cyan)?(,(white|black|red|blue|green|yellow|magenta|cyan))?\>"
+icolor magenta "^[[:space:]]*i?color\>" "\<(start|end)="
+# Strings
+icolor white ""(\\.|[^"])*""
+# Comments
+icolor brightblue "^[[:space:]]*#.*$"
+icolor cyan "^[[:space:]]*##.*$"
+
+## For patch files
+syntax "patch" "\.(patch|diff)$"
+color brightgreen "^\+.*"
+color green "^\+\+\+.*"
+color brightblue "^ .*"
+color brightred "^-.*"
+color red "^---.*"
+color brightyellow "^@@.*"
+color magenta "^diff.*"
+
+## For perl scripts
+syntax "perl" "\.p[lm]$"
+color red "\<(accept|alarm|atan2|bin(d|mode)|c(aller|h(dir|mod|op|own|root)|lose(dir)?|onnect|os|rypt)|d(bm(close|open)|efined|elete|ie|o|ump)|e(ach|of|val|x(ec|ists|it|p))|f(cntl|ileno|lock|ork))\>" "\<(get(c|login|peername|pgrp|ppid|priority|pwnam|(host|net|proto|serv)byname|pwuid|grgid|(host|net)byaddr|protobynumber|servbyport)|([gs]et|end)(pw|gr|host|net|proto|serv)ent|getsock(name|opt)|gmtime|goto|grep|hex|index|int|ioctl|join)\>" "\<(keys|kill|last|length|link|listen|local(time)?|log|lstat|m|mkdir|msg(ctl|get|snd|rcv)|next|oct|open(dir)?|ord|pack|pipe|pop|printf?|push|q|qq|qx|rand|re(ad(dir|link)?|cv|do|name|quire|set|turn|verse|winddir)|rindex|rmdir|s|scalar|seek(dir)?)\>" "\<(se(lect|mctl|mget|mop|nd|tpgrp|tpriority|tsockopt)|shift|shm(ctl|get|read|write)|shutdown|sin|sleep|socket(pair)?|sort|spli(ce|t)|sprintf|sqrt|srand|stat|study|substr|symlink|sys(call|read|tem|write)|tell(dir)?|time|tr(y)?|truncate|umask)\>" "\<(un(def|link|pack|shift)|utime|values|vec|wait(pid)?|wantarray|warn|write)\>"
+color magenta "\<(continue|else|elsif|do|for|foreach|if|unless|until|while|eq|ne|lt|gt|le|ge|cmp|x|my|sub|use|package|can|isa)\>"
+icolor cyan start="[$@%]" end="( |[^0-9A-Z_]|-)"
+color yellow "".*"|qq\|.*\|"
+color white "[sm]/.*/"
+color white start="(^use| = new)" end=";"
+color green "#.*"
+color yellow start="<< 'STOP'" end="STOP"
+
+## For python scripts
+syntax "python" "\.py$"
+icolor brightblue "def [0-9A-Z_]+"
+color brightcyan "\<(and|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|map|not|or|pass|print|raise|return|try|while)\>"
+color brightgreen "['][^']*[^\\][']" "[']{3}.*[^\\][']{3}"
+color brightgreen "["][^"]*[^\\]["]" "["]{3}.*[^\\]["]{3}"
+color brightgreen start=""""[^"]" end=""""" start="'''[^']" end="'''"
+color brightred "#.*$"
+
+## For ruby scripts
+syntax "ruby" "\.rb$"
+# Asciibetical list of reserved words
+color yellow "\<(BEGIN|END|alias|and|begin|break|case|class|def|defined\?|do|else|elsif|end|ensure|false|for|if|in|module|next|nil|not|or|redo|rescue|retry|return|self|super|then|true|undef|unless|until|when|while|yield)\>"
+## Constants
+color brightblue "(\$|@|@@)?\<[A-Z]+[0-9A-Z_a-z]*"
+# Ruby "symbols"
+icolor magenta "([ 	]|^):[0-9A-Z_]+\>"
+# Some unique things we want to stand out
+color brightyellow "\<(__FILE__|__LINE__)\>"
+# Regular expressions
+color brightmagenta "/([^/]|(\\/))*/[iomx]*" "%r\{([^}]|(\\}))*\}[iomx]*"
+# Shell command expansion is in `backticks` or like %x{this}.  These are
+# "double-quotish" (to use a perlism).
+color brightblue "`[^`]*`" "%x\{[^}]*\}"
+# Strings, double-quoted
+color green ""([^"]|(\\"))*"" "%[QW]?\{[^}]*\}" "%[QW]?\([^)]*\)" "%[QW]?<[^>]*>" "%[QW]?\[[^]]*\]" "%[QW]?\$[^$]*\$" "%[QW]?\^[^^]*\^" "%[QW]?![^!]*!"
+# Expression substitution.  These go inside double-quoted strings,
+# "like #{this}".
+color brightgreen "#\{[^}]*\}"
+# Strings, single-quoted
+color green "'([^']|(\\'))*'" "%[qw]\{[^}]*\}" "%[qw]\([^)]*\)" "%[qw]<[^>]*>" "%[qw]\[[^]]*\]" "%[qw]\$[^$]*\$" "%[qw]\^[^^]*\^" "%[qw]![^!]*!"
+# Comments
+color cyan "#[^{].*$" "#$"
+color brightcyan "##[^{].*$" "##$"
+# "Here" docs
+color green start="<<-?'?EOT'?" end="^EOT"
+# Some common markers
+color brightcyan "(XXX|TODO|FIXME|\?\?\?)"
+
+## For Bourne shell scripts ending with .sh
+syntax "sh" "\.sh$"
+icolor brightgreen "^[0-9A-Z_]+\(\)"
+color green "\<(case|do|done|elif|else|esac|exit|fi|for|function|if|in|local|read|return|select|shift|then|time|until|while)\>"
+color green "(\{|\}|\(|\)|\;|\]|\[|`|\\|\$|<|>|!|=|&|\|)"
+color green "-[Ldefgruwx]\>"
+color green "-(eq|ne|gt|lt|ge|le|s|n|z)\>"
+color brightblue "\<(cat|cd|chmod|chown|cp|echo|env|export|grep|install|let|ln|make|mkdir|mv|rm|sed|set|tar|touch|umask|unset)\>"
+icolor brightred "\$\{?[0-9A-Z_!@#$*?-]+\}?"
+color cyan "(^|[[:space:]])#.*$"
+color brightyellow ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+color ,green "[[:space:]]+$"
+
+## For Bourne shell scripts used in software compiling
+syntax "shlike" "\.(m4|sub|guess)$" "missing$" "configure\.ac$" "config\.(charset|rpath|status)$" "configure$"
+icolor brightgreen "^[0-9A-Z_]+\(\)"
+color green "\<(case|do|done|elif|else|esac|exit|fi|for|function|if|in|local|read|return|select|shift|then|time|until|while)\>"
+color green "(\{|\}|\(|\)|\;|\]|\[|`|\\|\$|<|>|!|=|&|\|)"
+color green "-[Ldefgruwx]\>"
+color green "-(eq|ne|gt|lt|ge|le|s|n|z)\>"
+color brightblue "\<(cat|cd|chmod|chown|cp|echo|env|export|grep|install|let|ln|make|mkdir|mv|rm|sed|set|tar|touch|umask|unset)\>"
+icolor brightred "\$\{?[0-9A-Z_!@#$*?-]+\}?"
+color cyan "(^|[[:space:]])#.*$"
+color brightyellow ""(\\.|[^"])*"" "'(\\.|[^'])*'"
+
+## For shell profile files
+syntax "profiles" "\.profile$" "\.bashrc$" "\profile$"
+color red "'(\\.|[^'])*'"
+color brightcyan ""(\\.|[^\"])*""
+color brightyellow "[a-zA-Z0-9\_]+="
+color brightmagenta "\<(sudo)\>"
+color cyan "\<(export)\>" "\<(alias)\>"
+color brightred "\<(umask)\>.*$"
+color green "#.*$"
+
+## For MySQL configuration files
+syntax "mysql" "my.cnf"
+icolor yellow "^[[:space:]]*[0-9\/a-z_-]*"
+color cyan start="\[" end="\]"
+color green "#.*$"
+
+## Default conditions if nothing matches from above
+syntax "default"
+color green "^#.*" 
+color brightgreen "^##.*"
+color yellow "^###.*"
+
+# TCL Syntax Highlighting
+# v0.1a by siyb from irc://teranetworks.de/woot
+# v0.3 by lbc (meretrix on EFnet)
+ 
+## which files?
+syntax "tcl" "\.tcl$" "\.xmmod$"
+ 
+## logical operators
+color brightcyan "[|| &&]|[=!<>]"
+
+
+## strings
+# FIXED: evals (square brackets) inside strings are interpreted
+# TODO: different set of keywords , colored only inside square brackets, when inside quotes
+color cyan "\".*\""
+
+ 
+## commands for TCL 8.4
+# list of all commands, and "subcommands" listed in http://www.tcl.tk/man/tcl8.4/TclCmd/ (except tcl and tclvars, which are special entries)
+#FIXED : '\s' was appended to the expression ...
+#REM : nano appears to support only ERE : no predefined character classes, no word boundaries
+#FIXME : impossible to specify *closing* square bracket in character class... -> extra definitions
+#TODO: add other keywords
+#TODO: expr math functions
+
+color brightblue "^(safe::interpCreate|safe::interpInit|safe::interpConfigure|safe::interpDelete|safe::interpAddToAccessPath|safe::interpFindInAccessPath|safe::setLogCmd|after|after cancel|after idle|after info|append|array|array anymore|array donesearch|array exists|array get|array names|array nextelement|array set|array size|array startsearch|array statistics|array unset|auto_execok|auto_import|auto_load|auto_mkindex|auto_mkindex_old|auto_qualify|auto_reset|bgerror|binary|binary format|binary scan|break|catch|cd|clock|clock clicks|clock format|clock scan|clock seconds|close|concat|continue|dde|dde eval|dde execute|dde poke|dde request|dde servername|dde services|else|elseif|encoding|encoding convertfrom|encoding convertto|encoding names|encoding system|eof|error|eval|exec|exit|expr|fblocked|fconfigure|fcopy|file|file atime|file attributes|file channels|file copy|file delete|file dirname|file executable|file exists|file extension|file isdirectory|file isfile|file join|file link|file lstat|file mkdir|file mtime|file nativename|file normalize|file owned|file pathtype|file readable|file readlink|file rename|file rootname|file separator|file size|file split|file stat|file system|file tail|file type|file volumes|file writable|fileevent|filename|flush|for|foreach|format|gets|glob|global|history|history add|history change|history clear|history event|history info|history keep|history nextid|history redo|http::config|http::geturl|http::formatQuery|http::reset|http::wait|http::status|http::size|http::code|http::ncode|http::data|http::error|http::cleanup|http::register|http::unregister|if|incr|info|info args|info body|info cmdcount|inco commands|info complete|info default|info exists|info functions|info globals|info hostname|info level|info library|info loaded|info locals|info nameofexecutable|info patchlevel|info procs|info script|info sharedlibextension|info tclversion|info vars|interp|interp alias|interp aliases|interp create|interp delete|interp eval|interp exists|interp expose|interp hide|interp hidden|interp invokehidden|interp issafe|interp marktrusted|interp recursionlimit|interp share|interp slaves|interp target|interp transfer|join|lappend|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|memory|memory active|memory break on malloc|memory info|memory init on|memory init off|memory onexit|memory tag|memory trace on|memory trace off|memory trace on at malloc|memory validate on|memory validate off|::msgcat|msgcat::mc|msgcat::mcmax|msgcat::mclocale|msgcat::preferences|msgcat::load|msgcat::mcset|msgcat::mcmset|msgcat::msunknown|namespace|namespace children|namespace code|namespace current|namespace delete|namespace eval|namespace exists|namespace export|namespace forget|namespace import|namespace inscope|namespace origin|namespace parent|namespace qualifiers|namespace tail|namespace which|open|package|package forget|package ifneeded|package names|package present|package provide|package require|package unknown|package vcompare|package versions|package vsatisfies|parray|pid|pkg::create|pkg_mkIndex|proc|puts|pwd|read|regexp|registry|registry broadcast|registry delete|registry get|registry keys|registry set|registry type|registry values|regsub|rename|resource|resource close|resource delete|resource files|resource list|resource open|resource read|resource types|resource write|return|scan|seek|set|socket|source|split|string|string bytelength|string compare|string equal|string first|string index|string is|string last|string length|string map|string match|string range|string repeat|string replace|string tolower|string totitle|string toupper|string trim|string trimleft|string trimright|string wordend|string wordstart|subst|switch|tcl_findLibrary|tcl_endOfWord|tcl_startOfNextWord|tcl_startOfPreviousWord|tcl_wordBreakAfter|tcl_wordBreakBefore|::tcltest|tcltest::test|tcltest::loadTestedCommands|tcltest::makeDirectory|tcltest::removeDirectory|tcltest::makeFile|tcltest::removeFile|tcltest::viewFile|tcltest::cleanupTests|tcltest::runAllTests|tcltest::configure|tcltest::customMatch|tcltest::testConstraint|tcltest::outputChannel|tcltest::errorChannel|tcltest::interpreter|tcltest::debug|tcltest::errorFile|tcltest::limitConstraints|tcltest::loadFile|tcltest::loadScript|tcltest::match|tcltest::matchDirectories|tcltest::matchFiles|tcltest::outputFile|tcltest::preserveCore|tcltest::singleProcess|tcltest::skip|tcltest::skipDirectories|tcltest::skipFiles|tcltest::temporaryDirectory|tcltest::testsDirectory|tcltest::verbose|tcltest::bytestring|tcltest::normalizeMsg|tcltest::normalizePath|tcltest::workingDirectory|tell|then|time|time|trace|trace add|trace add command|trace add execution|trace add variable|trace remove|trace remove command|trace remove execution|trace remove variable|trace info|trace info command|trace info execution|trace info variable|trace variable|trace vdelete|trace vinfo|unknown|unset|update|uplevel|upvar|variable|vwait|while)$"
+
+
+color brightblue "^(safe::interpCreate|safe::interpInit|safe::interpConfigure|safe::interpDelete|safe::interpAddToAccessPath|safe::interpFindInAccessPath|safe::setLogCmd|after|after cancel|after idle|after info|append|array|array anymore|array donesearch|array exists|array get|array names|array nextelement|array set|array size|array startsearch|array statistics|array unset|auto_execok|auto_import|auto_load|auto_mkindex|auto_mkindex_old|auto_qualify|auto_reset|bgerror|binary|binary format|binary scan|break|catch|cd|clock|clock clicks|clock format|clock scan|clock seconds|close|concat|continue|dde|dde eval|dde execute|dde poke|dde request|dde servername|dde services|else|elseif|encoding|encoding convertfrom|encoding convertto|encoding names|encoding system|eof|error|eval|exec|exit|expr|fblocked|fconfigure|fcopy|file|file atime|file attributes|file channels|file copy|file delete|file dirname|file executable|file exists|file extension|file isdirectory|file isfile|file join|file link|file lstat|file mkdir|file mtime|file nativename|file normalize|file owned|file pathtype|file readable|file readlink|file rename|file rootname|file separator|file size|file split|file stat|file system|file tail|file type|file volumes|file writable|fileevent|filename|flush|for|foreach|format|gets|glob|global|history|history add|history change|history clear|history event|history info|history keep|history nextid|history redo|http::config|http::geturl|http::formatQuery|http::reset|http::wait|http::status|http::size|http::code|http::ncode|http::data|http::error|http::cleanup|http::register|http::unregister|if|incr|info|info args|info body|info cmdcount|inco commands|info complete|info default|info exists|info functions|info globals|info hostname|info level|info library|info loaded|info locals|info nameofexecutable|info patchlevel|info procs|info script|info sharedlibextension|info tclversion|info vars|interp|interp alias|interp aliases|interp create|interp delete|interp eval|interp exists|interp expose|interp hide|interp hidden|interp invokehidden|interp issafe|interp marktrusted|interp recursionlimit|interp share|interp slaves|interp target|interp transfer|join|lappend|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|memory|memory active|memory break on malloc|memory info|memory init on|memory init off|memory onexit|memory tag|memory trace on|memory trace off|memory trace on at malloc|memory validate on|memory validate off|::msgcat|msgcat::mc|msgcat::mcmax|msgcat::mclocale|msgcat::preferences|msgcat::load|msgcat::mcset|msgcat::mcmset|msgcat::msunknown|namespace|namespace children|namespace code|namespace current|namespace delete|namespace eval|namespace exists|namespace export|namespace forget|namespace import|namespace inscope|namespace origin|namespace parent|namespace qualifiers|namespace tail|namespace which|open|package|package forget|package ifneeded|package names|package present|package provide|package require|package unknown|package vcompare|package versions|package vsatisfies|parray|pid|pkg::create|pkg_mkIndex|proc|puts|pwd|read|regexp|registry|registry broadcast|registry delete|registry get|registry keys|registry set|registry type|registry values|regsub|rename|resource|resource close|resource delete|resource files|resource list|resource open|resource read|resource types|resource write|return|scan|seek|set|socket|source|split|string|string bytelength|string compare|string equal|string first|string index|string is|string last|string length|string map|string match|string range|string repeat|string replace|string tolower|string totitle|string toupper|string trim|string trimleft|string trimright|string wordend|string wordstart|subst|switch|tcl_findLibrary|tcl_endOfWord|tcl_startOfNextWord|tcl_startOfPreviousWord|tcl_wordBreakAfter|tcl_wordBreakBefore|::tcltest|tcltest::test|tcltest::loadTestedCommands|tcltest::makeDirectory|tcltest::removeDirectory|tcltest::makeFile|tcltest::removeFile|tcltest::viewFile|tcltest::cleanupTests|tcltest::runAllTests|tcltest::configure|tcltest::customMatch|tcltest::testConstraint|tcltest::outputChannel|tcltest::errorChannel|tcltest::interpreter|tcltest::debug|tcltest::errorFile|tcltest::limitConstraints|tcltest::loadFile|tcltest::loadScript|tcltest::match|tcltest::matchDirectories|tcltest::matchFiles|tcltest::outputFile|tcltest::preserveCore|tcltest::singleProcess|tcltest::skip|tcltest::skipDirectories|tcltest::skipFiles|tcltest::temporaryDirectory|tcltest::testsDirectory|tcltest::verbose|tcltest::bytestring|tcltest::normalizeMsg|tcltest::normalizePath|tcltest::workingDirectory|tell|then|time|time|trace|trace add|trace add command|trace add execution|trace add variable|trace remove|trace remove command|trace remove execution|trace remove variable|trace info|trace info command|trace info execution|trace info variable|trace variable|trace vdelete|trace vinfo|unknown|unset|update|uplevel|upvar|variable|vwait|while)[ 	;]"
+color brightblue "[ 	;\[](safe::interpCreate|safe::interpInit|safe::interpConfigure|safe::interpDelete|safe::interpAddToAccessPath|safe::interpFindInAccessPath|safe::setLogCmd|after|after cancel|after idle|after info|append|array|array anymore|array donesearch|array exists|array get|array names|array nextelement|array set|array size|array startsearch|array statistics|array unset|auto_execok|auto_import|auto_load|auto_mkindex|auto_mkindex_old|auto_qualify|auto_reset|bgerror|binary|binary format|binary scan|break|catch|cd|clock|clock clicks|clock format|clock scan|clock seconds|close|concat|continue|dde|dde eval|dde execute|dde poke|dde request|dde servername|dde services|else|elseif|encoding|encoding convertfrom|encoding convertto|encoding names|encoding system|eof|error|eval|exec|exit|expr|fblocked|fconfigure|fcopy|file|file atime|file attributes|file channels|file copy|file delete|file dirname|file executable|file exists|file extension|file isdirectory|file isfile|file join|file link|file lstat|file mkdir|file mtime|file nativename|file normalize|file owned|file pathtype|file readable|file readlink|file rename|file rootname|file separator|file size|file split|file stat|file system|file tail|file type|file volumes|file writable|fileevent|filename|flush|for|foreach|format|gets|glob|global|history|history add|history change|history clear|history event|history info|history keep|history nextid|history redo|http::config|http::geturl|http::formatQuery|http::reset|http::wait|http::status|http::size|http::code|http::ncode|http::data|http::error|http::cleanup|http::register|http::unregister|if|incr|info|info args|info body|info cmdcount|inco commands|info complete|info default|info exists|info functions|info globals|info hostname|info level|info library|info loaded|info locals|info nameofexecutable|info patchlevel|info procs|info script|info sharedlibextension|info tclversion|info vars|interp|interp alias|interp aliases|interp create|interp delete|interp eval|interp exists|interp expose|interp hide|interp hidden|interp invokehidden|interp issafe|interp marktrusted|interp recursionlimit|interp share|interp slaves|interp target|interp transfer|join|lappend|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|memory|memory active|memory break on malloc|memory info|memory init on|memory init off|memory onexit|memory tag|memory trace on|memory trace off|memory trace on at malloc|memory validate on|memory validate off|::msgcat|msgcat::mc|msgcat::mcmax|msgcat::mclocale|msgcat::preferences|msgcat::load|msgcat::mcset|msgcat::mcmset|msgcat::msunknown|namespace|namespace children|namespace code|namespace current|namespace delete|namespace eval|namespace exists|namespace export|namespace forget|namespace import|namespace inscope|namespace origin|namespace parent|namespace qualifiers|namespace tail|namespace which|open|package|package forget|package ifneeded|package names|package present|package provide|package require|package unknown|package vcompare|package versions|package vsatisfies|parray|pid|pkg::create|pkg_mkIndex|proc|puts|pwd|read|regexp|registry|registry broadcast|registry delete|registry get|registry keys|registry set|registry type|registry values|regsub|rename|resource|resource close|resource delete|resource files|resource list|resource open|resource read|resource types|resource write|return|scan|seek|set|socket|source|split|string|string bytelength|string compare|string equal|string first|string index|string is|string last|string length|string map|string match|string range|string repeat|string replace|string tolower|string totitle|string toupper|string trim|string trimleft|string trimright|string wordend|string wordstart|subst|switch|tcl_findLibrary|tcl_endOfWord|tcl_startOfNextWord|tcl_startOfPreviousWord|tcl_wordBreakAfter|tcl_wordBreakBefore|::tcltest|tcltest::test|tcltest::loadTestedCommands|tcltest::makeDirectory|tcltest::removeDirectory|tcltest::makeFile|tcltest::removeFile|tcltest::viewFile|tcltest::cleanupTests|tcltest::runAllTests|tcltest::configure|tcltest::customMatch|tcltest::testConstraint|tcltest::outputChannel|tcltest::errorChannel|tcltest::interpreter|tcltest::debug|tcltest::errorFile|tcltest::limitConstraints|tcltest::loadFile|tcltest::loadScript|tcltest::match|tcltest::matchDirectories|tcltest::matchFiles|tcltest::outputFile|tcltest::preserveCore|tcltest::singleProcess|tcltest::skip|tcltest::skipDirectories|tcltest::skipFiles|tcltest::temporaryDirectory|tcltest::testsDirectory|tcltest::verbose|tcltest::bytestring|tcltest::normalizeMsg|tcltest::normalizePath|tcltest::workingDirectory|tell|then|time|time|trace|trace add|trace add command|trace add execution|trace add variable|trace remove|trace remove command|trace remove execution|trace remove variable|trace info|trace info command|trace info execution|trace info variable|trace variable|trace vdelete|trace vinfo|unknown|unset|update|uplevel|upvar|variable|vwait|while)$"
+color brightblue "[ 	;\[](safe::interpCreate|safe::interpInit|safe::interpConfigure|safe::interpDelete|safe::interpAddToAccessPath|safe::interpFindInAccessPath|safe::setLogCmd|after|after cancel|after idle|after info|append|array|array anymore|array donesearch|array exists|array get|array names|array nextelement|array set|array size|array startsearch|array statistics|array unset|auto_execok|auto_import|auto_load|auto_mkindex|auto_mkindex_old|auto_qualify|auto_reset|bgerror|binary|binary format|binary scan|break|catch|cd|clock|clock clicks|clock format|clock scan|clock seconds|close|concat|continue|dde|dde eval|dde execute|dde poke|dde request|dde servername|dde services|else|elseif|encoding|encoding convertfrom|encoding convertto|encoding names|encoding system|eof|error|eval|exec|exit|expr|fblocked|fconfigure|fcopy|file|file atime|file attributes|file channels|file copy|file delete|file dirname|file executable|file exists|file extension|file isdirectory|file isfile|file join|file link|file lstat|file mkdir|file mtime|file nativename|file normalize|file owned|file pathtype|file readable|file readlink|file rename|file rootname|file separator|file size|file split|file stat|file system|file tail|file type|file volumes|file writable|fileevent|filename|flush|for|foreach|format|gets|glob|global|history|history add|history change|history clear|history event|history info|history keep|history nextid|history redo|http::config|http::geturl|http::formatQuery|http::reset|http::wait|http::status|http::size|http::code|http::ncode|http::data|http::error|http::cleanup|http::register|http::unregister|if|incr|info|info args|info body|info cmdcount|inco commands|info complete|info default|info exists|info functions|info globals|info hostname|info level|info library|info loaded|info locals|info nameofexecutable|info patchlevel|info procs|info script|info sharedlibextension|info tclversion|info vars|interp|interp alias|interp aliases|interp create|interp delete|interp eval|interp exists|interp expose|interp hide|interp hidden|interp invokehidden|interp issafe|interp marktrusted|interp recursionlimit|interp share|interp slaves|interp target|interp transfer|join|lappend|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|memory|memory active|memory break on malloc|memory info|memory init on|memory init off|memory onexit|memory tag|memory trace on|memory trace off|memory trace on at malloc|memory validate on|memory validate off|::msgcat|msgcat::mc|msgcat::mcmax|msgcat::mclocale|msgcat::preferences|msgcat::load|msgcat::mcset|msgcat::mcmset|msgcat::msunknown|namespace|namespace children|namespace code|namespace current|namespace delete|namespace eval|namespace exists|namespace export|namespace forget|namespace import|namespace inscope|namespace origin|namespace parent|namespace qualifiers|namespace tail|namespace which|open|package|package forget|package ifneeded|package names|package present|package provide|package require|package unknown|package vcompare|package versions|package vsatisfies|parray|pid|pkg::create|pkg_mkIndex|proc|puts|pwd|read|regexp|registry|registry broadcast|registry delete|registry get|registry keys|registry set|registry type|registry values|regsub|rename|resource|resource close|resource delete|resource files|resource list|resource open|resource read|resource types|resource write|return|scan|seek|set|socket|source|split|string|string bytelength|string compare|string equal|string first|string index|string is|string last|string length|string map|string match|string range|string repeat|string replace|string tolower|string totitle|string toupper|string trim|string trimleft|string trimright|string wordend|string wordstart|subst|switch|tcl_findLibrary|tcl_endOfWord|tcl_startOfNextWord|tcl_startOfPreviousWord|tcl_wordBreakAfter|tcl_wordBreakBefore|::tcltest|tcltest::test|tcltest::loadTestedCommands|tcltest::makeDirectory|tcltest::removeDirectory|tcltest::makeFile|tcltest::removeFile|tcltest::viewFile|tcltest::cleanupTests|tcltest::runAllTests|tcltest::configure|tcltest::customMatch|tcltest::testConstraint|tcltest::outputChannel|tcltest::errorChannel|tcltest::interpreter|tcltest::debug|tcltest::errorFile|tcltest::limitConstraints|tcltest::loadFile|tcltest::loadScript|tcltest::match|tcltest::matchDirectories|tcltest::matchFiles|tcltest::outputFile|tcltest::preserveCore|tcltest::singleProcess|tcltest::skip|tcltest::skipDirectories|tcltest::skipFiles|tcltest::temporaryDirectory|tcltesdden|interp issafe|interp marktrusted|interp recursionlimit|interp share|interp slaves|interp target|interp transfer|join|lappend|lindex|linsert|list|llength|load|lrange|lreplace|lsearch|lset|lsort|memory|memory active|memory break on malloc|memory info|memory init on|memory init off|memory onexit|memory tag|memory trace on|memory trace off|memory trace on at malloc|memory validate on|memory validate off|::msgcat|msgcat::mc|msgcat::mcmax|msgcat::mclocale|msgcat::preferences|msgcat::load|msgcat::mcset|msgcat::mcmset|msgcat::msunknown|ns|pwd|read|regexp|registry|registry broadcast|registry delete|registry get|registry keys|registry set|registry type|registry values|regsub|rename|resource|resource close|resource delete|resource files|resource list|resource open|resource read|resource types|resource write|return|scan|seek|set|socket|source|split|string|string bytelength|string compare|string equal|string firstnnel|tcltest::errorChannel|tcltest::interpreter|tcltest::debug|tcltest::errorFile|tcltest::limitConstraints|tcltest::loadFile|tcltest::loadScript|tcltest::match|tcltest::matchDirectories|tcltest::matchFiles|tcltest::outputFile|tcltest::preserveCore|tcltest::singleProcess|tcltest::skip|tcltest::skipDirectories|tcltest::skipFiles|tcltest::temporaryDirectory|tcltest::testsDirectory|tcltest::verbose|tcltest::bytestring|tcltest::normalizeMsg|tcltest::normalizePath|tcltest::workingDirectory|tell|then|time|time|trace|trace add|trace add command|trace add execution|trace add variable|trace remove|trace remove command|trace remove execution|trace remove variable|trace info|trace info command|trace info execution|trace info variable|trace variable|trace vdelete|trace vinfo|unknown|unset|update|uplevel|upvar|variable|vwait|while)]"
+color brightblue "[ 	;\[](safe::interpCreate|safe::interpInit|safe::interpConfigure|safe::interpDelete|safe::interpAddToAccessPath|safe::interpFindInAccessPath|safe::setLogCmd|after|after cancel|after idle|after info|append|array|array anymore|array donesearch|array exists|array get|array names|array nextelement|array set|array size|array startsearch|array statistics|array unset|auto_execok|auto_import|auto_load|auto_mkindex|auto_mkindex_old|auto_qualify|auto_reset|bgerror|binary|binary format|binary scan|break|catch|cd|clock|clock clicks|clock format|clock scan|clock seconds|close|concat|continue|dde|dde eval|dde execute|dde poke|dde request|dde servername|dde services|else|elseif|encoding|encoding convertfrom|encoding convertto|encoding names|encoding system|eof|error|eval|exec|exit|expr|fblocked|fconfigure|fcopy|file|file atime|file attributes|file channels|file copy|file delete|file dirname|file executable|file exists|file extension|file isdirectory|file isfile|file join|file link|file lstat|file mkdir|file mtime|file nativename|file normalize|file owned|file pathtype|file readable|file readlink|file rename|file rootname|file separator|file size|file split|file stat|file system|file tail|file type|file volumes|file msgcat::mcmset|msgcat::msunknown|namespace|namespace children|namespace code|namespace current|namespace delete|namespace eval|namespace exists|namespace export|namespace forget|namespace import|namespace inscope|namespace origin|namespace parent|namespace qualifiers|namespace tail|namespace which|open|package|package forget|package ifneeded|package names|package present|package provide|package require|package unknown|package vcompare|package versions|package vsatisfies|parray|pid|pkg::create|pkg_mkIndex|proc|puts|pwd|read|regexp|registry|registry broadcast|registry delete|registry get|registry keys|registry set|registry type|registry values|regsub|rename|resource|resource close|resource delete|resource files|resource list|resource open|resource read|resource types|resource write|return|scan|seek|set|socket|source|split|string|string bytelength|string compare|string equal|string first|string index|string is|string last|string length|string map|string match|string range|string repeat|string replace|string tolower|string totitle|string toupper|string trim|string trimleft|string trimright|string wordend|string wordstart|subst|switch|tcl_findLibrary|tcl_endOfWord|tcl_startOfNextWord|tcl_startOfPreviousWord|tcl_wordBreakAfter|tcl_wordBreakBefore|::tcltest|tcltest::test|tcltest::loadTestedCommands|tcltest::makeDirectory|tcltest::removeDirectory|tcltest::makeFile|tcltest::removeFile|tcltest::viewFile|tcltest::cleanupTests|tcltest::runAllTests|tcltest::configure|tcltest::customMatch|tcltest::testConstraint|tcltest::outputChannel|tcltest::errorChannel|tcltest::interpreter|tcltest::debug|tcltest::errorFile|tcltest::limitConstraints|tcltest::loadFile|tcltest::loadScript|tcltest::match|tcltest::matchDirectories|tcltest::matchFiles|tcltest::outputFile|tcltest::preserveCore|tcltest::singleProcess|tcltest::skip|tcltest::skipDirectories|tcltest::skipFiles|tcltest::temporaryDirectory|tcltest::testsDirectory|tcltest::verbose|tcltest::bytestring|tcltest::normalizeMsg|tcltest::normalizePath|tcltest::workingDirectory|tell|then|time|time|trace|trace add|trace add command|trace add execution|trace add variable|trace remove|trace remove command|trace remove execution|trace remove variable|trace info|trace info command|trace info execution|trace info variable|trace variable|trace vdelete|trace vinfo|unknown|unset|update|uplevel|upvar|variable|vwait|while)]"
+
+
+# FIXME: escaped brackets are colored
+color cyan "\["
+color cyan "\]"
+ 
+## command parameters (starting with a -, ends when a space is encountered, are not numbers)
+# FIXED: space before the dash
+#color brightred "[ 	]-[^[ 	]]*"
+color brightblue "[ 	]-[^ 	0-9]*"
+ 
+
+ 
+## integers
+# FIXED: integers inside strings were differentiated : changed order -> changed highlight prio
+# FIXME : integers are only surrounded by whitespace, parenthesis, brackets, or commas/dots, or beginning/end of lin
+
+#### brackets
+# FIXME : escaped brackets are colored
+# TODO : differentiate bewteen a code block, and a string with no interpreted contents (variables or evels)
+color brightyellow "[.,{}();]"
+
+
+
+## comments
+# FIXED: quotes inside comment lines were differentiated ; changed order
+# FIXED: '#' marks a comment as first non-whitespace character on a line only
+# FIXED: whitespace is allowed before '#' (character classes like [:blank:] don't seem to work, litteral space and tab used !
+#color green "^([:space:]#.*)$"
+color green "^[ 	]*#.*$"
+color green ";[ 	]*#.*$"
+

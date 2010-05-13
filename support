@@ -1,0 +1,38 @@
+#! /usr/local/bin/bash
+
+TMPFILE=`mktemp /tmp/ircrc.XXXXXX` || exit 1
+real_name="$(id -u)@${HOSTNAME%%.*}"
+
+cat >> $TMPFILE << _EOF_
+
+servers = (
+  {
+    address = "irc.jinxshells.net";
+    chatnet = "jinxshells";
+    port = "6667";
+    autoconnect = "yes";
+  }
+);
+
+channels = (
+  { name = "#jinxshells"; chatnet = "jinxshells"; autojoin = "yes"; }
+);
+
+settings = {
+  core = {
+    real_name = "$real_name";
+    user_name = "$real_name";
+    nick = "[SHELL]-${RANDOM}";
+    timestamp_format = "%H:%M:%S";
+  };
+  "fe-text" = { scrollback_time = "48h"; };
+  "fe-common/core" = { autolog = "yes"; };
+};
+
+
+_EOF_
+
+#exec BitchX -p 6667 -l $TMPFILE -c \#JinxShells -n [SHELL]-${RANDOM} irc.jinxshells.net
+exec irssi --config $TMPFILE
+#rm -f $TMPFILE > /dev/null 2>&1
+

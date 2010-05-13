@@ -1,0 +1,29 @@
+#!/bin/sh
+
+. /usr/local/etc/colors.conf
+
+psydir=$HOME/psybnc
+conf=${psydir}/psybnc.conf
+
+NEWPASS="change$(jot -r 1 0 9)me$(jot -r 1 100 999)"
+
+if test -d $psydir; then
+ if [ -f ${conf} ]; then
+   #Kill their psybnc
+   psy-kill
+
+   #reset the pass
+   sed -i -e "s/USER1\.USER\.PASS=.*/USER1\.USER\.PASS=$NEWPASS/" ${conf}
+
+   #Start their psybnc
+   $HOME/psybnc/psybnc
+
+   echo ""
+   echo -e "${BOLD}Your new psybnc password is:${RED} ${NEWPASS} ${RESET}"
+   echo -e "${BOLD}Please change this immediately once connected:${RED} /quote PASSWORD newpasshere ${RESET}"
+   exit 0
+ fi
+fi
+echo "No running psybnc found"
+exit 1
+

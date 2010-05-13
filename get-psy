@@ -1,0 +1,90 @@
+#!/usr/local/bin/bash
+. /usr/local/etc/colors.conf
+. /usr/local/etc/functions.sh
+
+if [ -d $HOME/psybnc ] ; then
+  echo "It appears you already have PsyBNC Installed"
+  echo -n "Do you wish to remove it and start over? "
+  read ans
+  case $ans in
+    [Yy]|[Yy][Ee]|[Yy][Ee][Ss])
+      psy-kill
+      rm -rf $HOME/psybnc ;;
+    *)
+      exit 0 ;;
+  esac
+fi
+
+# unpack/make
+cd ~
+echo "Extracting PsyBNC ..."
+tar -xzf /usr/local/share/files/psyBNC-2.3.2-7.tar.gz
+cd ~/psybnc
+echo "Patching various PsyBNC bugs ..."
+patch -p1 > /dev/null 2>&1 < /usr/local/share/files/psybnc.antifreeze.patch
+patch -p1 > /dev/null 2>&1 < /usr/local/share/files/psybnc.asyncdnsfix.patch
+patch -p1 > /dev/null 2>&1 < /usr/local/share/files/psybnc.crashfix.patch
+
+rm -f *.orig
+rm -f src/*.orig
+
+
+mkdir key
+cp -f /usr/local/share/files/psybnc.key.pem key/
+cp -f /usr/local/share/files/psybnc.cert.pem key/
+cp -f /usr/local/share/files/psybnc.req.pem key/
+
+# set maxconn/maxuser
+cat config.h \
+| sed 's:^#define MAXCONN [0-9]*:#define MAXCONN 10:' \
+| sed 's:^#define MAXUSER [0-9]*:#define MAXUSER 4:' \
+> config.h.new
+mv config.h.new config.h
+
+echo "Compiling PsyBNC (this could take a few minutes) ..."
+make > /dev/null 2>&1 &
+wait $!
+make clean > /dev/null 2>&1 &
+wait $!
+mv salt.h ..
+
+host=`hostname`
+port=`jot -r 1 5000 65000`
+
+# setup config
+cat > ~/psybnc/psybnc.conf << __EOF__
+PSYBNC.SYSTEM.HOST1=$host
+PSYBNC.SYSTEM.PORT1=$port
+PSYBNC.HOSTALLOWS.ENTRY0=*;*
+__EOF__
+
+# startup their psybnc
+echo ; echo "Please wait while your psybnc starts up..."
+$HOME/psybnc/psybnc >/dev/null 2>&1
+ppid=$( cat $HOME/psybnc/psybnc.pid )
+if $( kill -CHLD $ppid >/dev/null 2>&1 ) ; then
+  echo
+else
+  echo "Error Starting PsyBNC ..."
+  echo "Please retry get-psy or contact an Administrator"
+  exit 0
+fi
+
+#Crontab it
+/usr/local/bin/cron-psy
+
+echo "Thank you for using the automated psyBNC Installer"
+echo -e "[${GREEN}+${RESET}] PsyBNC Installation .... Complete!"
+echo -e "[${GREEN}+${RESET}] PsyBNC Configuration ... Complete!"
+echo -e "[${GREEN}+${RESET}] PsyBNC Crontab ......... Complete!"
+echo -e "[${GREEN}+${RESET}] PsyBNC Started ......... Success!"
+echo -e ""
+echo -e "${BOLD}PsyBNC Information:"
+echo -e "    Server:  $host"
+echo -e "    Port:    $port"
+echo -e "${RESET}"
+echo -e "To connect use: /server $host $port"
+
+
+
+

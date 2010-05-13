@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. /usr/local/etc/colors.conf
+
+psydir=$HOME/psybnc
+pidfile=${psydir}/psybnc.pid
+
+if test -d $psydir; then
+ if [ -f ${pid} ]; then
+   kill -9 `cat $pidfile`
+   rm $pidfile
+   echo ""
+   echo -e "${BOLD}Your psyBNC has been killed. ${RESET}"
+   exit 0
+ fi
+fi
+echo "No running psybnc found"
+exit 1
+

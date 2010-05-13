@@ -1,0 +1,86 @@
+diff -Nur psybnc/src/p_client.c psybnc-crashfix/src/p_client.c
+--- psybnc/src/p_client.c	Sat Jun  4 18:22:45 2005
++++ psybnc-crashfix/src/p_client.c	Tue Feb 13 02:22:25 2007
+@@ -2692,22 +2692,40 @@
+ 
+ int userinerror(int usern,int errn)
+ {
++    char userlogin[sizeof(user(usern)->login)];
++    char usersocks[sizeof(currentsocket->sock->source)];
+     pcontext;
+-    p_log(LOG_ERROR,-1,lngtxt(280),user(usern)->login,currentsocket->sock->source);
+-    if (user(usern)->rights!=RI_ADMIN) systemnotice(usern,lngtxt(281),user(usern)->login,currentsocket->sock->source);
++    sprintf(userlogin, "%s", user(usern)->login);
++    sprintf(usersocks, "%s", currentsocket->sock->source);
++
++    p_log(LOG_ERROR,-1,lngtxt(280),userlogin,usersocks);
+     strmncpy(irccontent,lngtxt(282),sizeof(irccontent));
+     quitclient(usern);
++    pcontext;
++    if (user(usern)->rights!=RI_ADMIN) {
++      pcontext;
++      systemnotice(usern,lngtxt(281),userlogin,usersocks);
++    }
+     return -1;
+ }
+ 
+ int userinkill(int usern)
+ {
+     char buf[400];
++    char userlogin[sizeof(user(usern)->login)];
++    char usersocks[sizeof(currentsocket->sock->source)];
+     pcontext;
+-    p_log(LOG_WARNING,-1,lngtxt(283),user(usern)->login,currentsocket->sock->source);
+-    if (user(usern)->rights!=RI_ADMIN) systemnotice(usern,lngtxt(284),user(usern)->login,currentsocket->sock->source);
++    sprintf(userlogin, "%s", user(usern)->login);
++    sprintf(usersocks, "%s", currentsocket->sock->source);
++
++    p_log(LOG_WARNING,-1,lngtxt(283),userlogin,usersocks);
+     strmncpy(irccontent,lngtxt(285),sizeof(irccontent));
+     quitclient(usern);
++    pcontext;
++    if (user(usern)->rights!=RI_ADMIN) {
++      pcontext;
++      systemnotice(usern,lngtxt(284),userlogin,usersocks);
++    }
+     return -1;
+ }
+ 
+diff -Nur psybnc/src/p_peer.c psybnc-crashfix/src/p_peer.c
+--- psybnc/src/p_peer.c	Sat Jun  4 18:22:45 2005
++++ psybnc-crashfix/src/p_peer.c	Sat Sep 16 16:24:17 2006
+@@ -50,7 +50,7 @@
+        if (newpeer(apeer)->state > STD_NOUSE) {
+           if (strmcmp(newpeer(apeer)->host,hostname)) {
+ 	     cnt++;
+-	     if(cnt>2) 
++	     if(cnt>5) 
+ 	         return -1;
+           }
+        }
+diff -Nur psybnc/src/p_socket.c psybnc-crashfix/src/p_socket.c
+--- psybnc/src/p_socket.c	Sat Jun  4 18:22:45 2005
++++ psybnc-crashfix/src/p_socket.c	Fri Jul 14 17:18:29 2006
+@@ -1113,7 +1113,8 @@
+ 	    sock->bytesread+=ret;
+ 	} else {
+ #endif
+-	    ret=recv(sock->syssock,sock->commbuf+sock->bytesread,sz,0);
++//	    ret=recv(sock->syssock,sock->commbuf+sock->bytesread,sz,0);
++	    ret=read(sock->syssock,sock->commbuf+sock->bytesread,sz);
+ 	    if (ret>0) sock->bytesread+=ret;
+ 	    if (ret==-1 && ((errno == EWOULDBLOCK) || (errno == EAGAIN))) { *ircbuf=0; return 1; }
+ 	    if (ret<=0) return ret;
+diff -Nur psybnc/src/p_sysmsg.c psybnc-crashfix/src/p_sysmsg.c
+--- psybnc/src/p_sysmsg.c	Sat Jun  4 18:22:45 2005
++++ psybnc-crashfix/src/p_sysmsg.c	Tue Feb 13 02:18:10 2007
+@@ -203,8 +203,7 @@
+ 
+ /* sending system notice to a user */
+ 
+-int 
+-systemnotice(int usernum, char *format, ...)
++int systemnotice(int usernum, char *format, ...)
+ {
+     char buf[1024];
+     va_list va;

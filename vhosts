@@ -1,0 +1,23 @@
+#!/bin/sh
+. /usr/local/etc/colors.conf
+banned="12345"
+
+echo -e "\n${LIGHT_BLUE}IPv4 vhost list for `hostname` ${RESET}\n"
+addies=`cat /usr/local/etc/vhost_ips`
+for i in $addies;do
+
+  name=`host $i |awk '/pointer/ { print $5 }' | sed 's/[ .\]*$//'`
+        if [ -n "$name" ]; then
+  name3=`host $name |head -1|awk '/address/ { print $4 }' | sed 's/[ .\]*$//'`
+        fi
+        if [ "$i" = "$name3" ]; then
+                echo -e "${GREEN}${BOLD}UP${RESET}${BOLD} - ${name3} - ${name}${RESET}";
+        else
+                echo -e "${RED}${BOLD}DN${RESET}${BOLD} - $i - ${name}${RESET}";
+        fi
+
+done
+
+echo -e "\n${RED}[New]${RESET}${BOLD} If you have a vhost suggestion, email it to vhosts@jinxshells.com and we will add it for you.${RESET}"
+echo -e "\n${RED}[New]${RESET}${BOLD} Get a custom vhost and private IP for only \$2.00 per month. ${BOLD} Contact sales@jinxshells.com today.${RESET}"
+

@@ -1,0 +1,19 @@
+#!/bin/sh
+psydir=$HOME/psybnc
+if test -d $psydir; then
+ if test -r $psydir/psybnc.pid ; then
+   ppid=$( cat $psydir/psybnc.pid )
+   if $( kill -CHLD $ppid >/dev/null 2>&1 ) ; then
+     exit 0
+   fi
+ fi
+ cd $psydir
+
+ if [ -f $psydir/psybnc.conf.old ]; then
+   if ! [ -f $psydir/psybnc.conf ]; then
+     cp -f $psydir/psybnc.conf.old $psydir/psybnc.conf
+   fi
+ fi
+ $psydir/psybnc
+fi
+

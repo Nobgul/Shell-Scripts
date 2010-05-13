@@ -1,0 +1,15 @@
+#! /bin/sh
+
+if ! [ -f $HOME/psybnc/psybnc.conf ]; then
+  exit
+fi
+
+cd $HOME
+touch .tmp_cron-get_psy
+crontab -l >.tmp_cron-get_psy 2>/dev/null
+if [ `grep '/usr/local/bin/check-psy >/dev/null 2>&1' ~/.tmp_cron-get_psy|wc -l|awk '{print $1}'` -eq 0 ] ; then
+  echo '*/5 * * * * /usr/local/bin/check-psy >/dev/null 2>&1' >> ~/.tmp_cron-get_psy
+  crontab ~/.tmp_cron-get_psy
+fi
+rm -f ~/.tmp_cron-get_psy
+

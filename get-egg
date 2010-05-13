@@ -1,0 +1,39 @@
+#!/bin/sh
+
+eggver=1.6.19
+cd $HOME
+if [ -d $HOME/eggdrop ] ; then
+  cp $HOME/eggdrop/eggdrop.conf $HOME/.eggdrop.conf.backup
+fi
+
+echo "Extracting eggdrop sources ..."
+tar -xzf /usr/local/share/files/eggdrop$eggver.tar.gz
+cd $HOME/eggdrop$eggver
+echo "Configuring eggdrop ..."
+./configure >/dev/null
+cd $HOME/eggdrop$eggver
+gmake config >/dev/null
+echo "Building eggdrop ..."
+cd $HOME/eggdrop$eggver
+gmake >/dev/null 2>&1
+echo "Installing eggdrop ..."
+cd $HOME/eggdrop$eggver
+gmake install >/dev/null 2>&1
+gmake clean > /dev/null 2>&1
+rm -rf $HOME/eggdrop$eggver
+echo "Complete!"
+echo
+echo "Your eggdrop has been installed to:"
+echo "    $HOME/eggdrop"
+#echo "after configuring your eggdrop you may want to use 'cron-egg BOT.conf'"
+#echo "to setup a crontab for your eggdrop"
+echo ""
+echo "For help configuring your eggdrop, please visit http://www.egghelp.org"
+echo "Also make sure you set my-ip and my-hostname to one of the vhosts listed in the 'vhosts' cmd."
+
+if [ -f $HOME/.eggdrop.conf.backup ]; then
+  mv -f $HOME/eggdrop/eggdrop.conf $HOME/eggdrop/eggdrop.conf.new
+  mv -f $HOME/.eggdrop.conf.backup $HOME/eggdrop/eggdrop.conf
+fi
+
+
